@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D907F0CE28F8DCC6008504D5 /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D907F0CD28F8DCC6008504D5 /* Elements.swift */; };
 		D92EBA1928F649A2003AC500 /* GomokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EBA1828F649A2003AC500 /* GomokuApp.swift */; };
 		D92EBA1B28F649A2003AC500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EBA1A28F649A2003AC500 /* ContentView.swift */; };
 		D92EBA1D28F649A4003AC500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D92EBA1C28F649A4003AC500 /* Assets.xcassets */; };
 		D92EBA2028F649A4003AC500 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D92EBA1F28F649A4003AC500 /* Preview Assets.xcassets */; };
+		D92EBA2828F64A7A003AC500 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EBA2728F64A7A003AC500 /* GameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D907F0CD28F8DCC6008504D5 /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 		D92EBA1528F649A2003AC500 /* Gomoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gomoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D92EBA1828F649A2003AC500 /* GomokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GomokuApp.swift; sourceTree = "<group>"; };
 		D92EBA1A28F649A2003AC500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D92EBA1C28F649A4003AC500 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D92EBA1F28F649A4003AC500 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D92EBA2728F64A7A003AC500 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +55,10 @@
 		D92EBA1728F649A2003AC500 /* Gomoku */ = {
 			isa = PBXGroup;
 			children = (
+				D92EBA2628F64A50003AC500 /* Views */,
 				D92EBA1828F649A2003AC500 /* GomokuApp.swift */,
 				D92EBA1A28F649A2003AC500 /* ContentView.swift */,
+				D907F0CD28F8DCC6008504D5 /* Elements.swift */,
 				D92EBA1C28F649A4003AC500 /* Assets.xcassets */,
 				D92EBA1E28F649A4003AC500 /* Preview Content */,
 			);
@@ -65,6 +71,14 @@
 				D92EBA1F28F649A4003AC500 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D92EBA2628F64A50003AC500 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D92EBA2728F64A7A003AC500 /* GameView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D92EBA1B28F649A2003AC500 /* ContentView.swift in Sources */,
+				D92EBA2828F64A7A003AC500 /* GameView.swift in Sources */,
+				D907F0CE28F8DCC6008504D5 /* Elements.swift in Sources */,
 				D92EBA1928F649A2003AC500 /* GomokuApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

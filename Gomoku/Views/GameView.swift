@@ -12,22 +12,36 @@ struct GameView: View {
     var playerSide = GameState.black
     var AISide = GameState.white
     var whoTurn = GameState.black
+    var gSpace = UIScreen.LineSpace
+    var lineLength = UIScreen.lineLength
+    var initH = UIScreen.sHeight/2-80
+    var initW = UIScreen.sWidth-50
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors:[.yellow, .orange]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .frame(maxWidth:UIScreen.sWidth-10, maxHeight:UIScreen.sWidth-10)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-            BroadLines
+            LinearGradient(gradient: Gradient(colors:[.yellow.opacity(0.4), .orange.opacity(0.8)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .frame(maxWidth:UIScreen.sWidth-8, maxHeight:UIScreen.sWidth-8)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+            BroadLines.frame(width:initW,height:initH)
         }
     }
     
     var BroadLines: some View {
-        Path() { path in
-                path.move(to: CGPoint(x: 0, y: UIScreen.sWidth))
-                path.addLine(to: CGPoint(x: UIScreen.lineLength, y: UIScreen.sWidth))
+        GeometryReader { geometry in
+            Path { path in
+                for index in 0...14 {
+                    let vOffset: CGFloat = CGFloat(index) * self.gSpace
+                    path.move(to: CGPoint(x: vOffset, y: 0))
+                    path.addLine(to: CGPoint(x: vOffset, y: lineLength))
+                }
+                for index in 0...14 {
+                    let hOffset: CGFloat = CGFloat(index) * self.gSpace
+                    path.move(to: CGPoint(x: 0, y: hOffset))
+                    path.addLine(to: CGPoint(x: lineLength, y: hOffset))
+                }
             }
-            .stroke(Color.black, lineWidth: 2)
+            .stroke(Color.black, lineWidth: 1.5)
+        }
     }
 }
 

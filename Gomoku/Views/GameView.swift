@@ -49,7 +49,7 @@ struct GameView: View {
                 path.move(to: CGPoint(x: 14*self.gSpace, y: 0))
                 path.addLine(to: CGPoint(x: 14*self.gSpace, y: lineLength+1))
                 
-                path.move(to: CGPoint(x: 0, y: 0))
+                path.move(to: CGPoint(x: -1, y: 0))
                 path.addLine(to: CGPoint(x: lineLength+1, y: 0))
                 path.move(to: CGPoint(x: 0, y: 14*self.gSpace))
                 path.addLine(to: CGPoint(x: lineLength+1, y: 14*self.gSpace))

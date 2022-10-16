@@ -14,16 +14,18 @@ struct GameView: View {
     var whoTurn = GameState.black
     var gSpace = UIScreen.LineSpace
     var lineLength = UIScreen.lineLength
-    var initH = UIScreen.sHeight/2-80
-    var initW = UIScreen.sWidth-50
+    var initH = UIScreen.sHeight/2 - 10*UIScreen.LineSpace/3
+    var initW = UIScreen.sWidth - 2*UIScreen.LineSpace
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors:[.yellow.opacity(0.4), .orange.opacity(0.8)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors:[Color(red: 248/255, green: 206/255, blue: 99/255),Color(red: 218/255, green: 168/255, blue: 58/255), Color(red: 180/255, green: 112/255, blue: 10/255)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .frame(maxWidth:UIScreen.sWidth-8, maxHeight:UIScreen.sWidth-8)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             BroadLines.frame(width:initW,height:initH)
+            Circle().frame(width: 8,height: 8)
         }
+        
     }
     
     var BroadLines: some View {
@@ -40,7 +42,20 @@ struct GameView: View {
                     path.addLine(to: CGPoint(x: lineLength, y: hOffset))
                 }
             }
-            .stroke(Color.black, lineWidth: 1.5)
+            .stroke(Color.black, lineWidth: 1)
+            Path { path in
+                path.move(to: CGPoint(x: 0, y: 0))
+                path.addLine(to: CGPoint(x: 0, y: lineLength+1))
+                path.move(to: CGPoint(x: 14*self.gSpace, y: 0))
+                path.addLine(to: CGPoint(x: 14*self.gSpace, y: lineLength+1))
+                
+                path.move(to: CGPoint(x: 0, y: 0))
+                path.addLine(to: CGPoint(x: lineLength+1, y: 0))
+                path.move(to: CGPoint(x: 0, y: 14*self.gSpace))
+                path.addLine(to: CGPoint(x: lineLength+1, y: 14*self.gSpace))
+            }
+            .stroke(Color.black, lineWidth: 2)
+               
         }
     }
 }

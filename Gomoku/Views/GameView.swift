@@ -24,8 +24,7 @@ struct GameView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             BroadLines.frame(width:initW,height:initH)
             Circle().frame(width: 8,height: 8)
-        }
-        
+        }        
     }
     
     var BroadLines: some View {

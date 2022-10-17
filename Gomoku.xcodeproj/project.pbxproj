@@ -59,10 +59,10 @@
 		D92EBA1728F649A2003AC500 /* Gomoku */ = {
 			isa = PBXGroup;
 			children = (
+				D9D1D6DB28FD254700BA12CD /* Models */,
 				D92EBA2628F64A50003AC500 /* Views */,
 				D92EBA1828F649A2003AC500 /* GomokuApp.swift */,
 				D92EBA1A28F649A2003AC500 /* ContentView.swift */,
-				D907F0CD28F8DCC6008504D5 /* Elements.swift */,
 				D92EBA1C28F649A4003AC500 /* Assets.xcassets */,
 				D92EBA1E28F649A4003AC500 /* Preview Content */,
 			);
@@ -81,10 +81,18 @@
 			isa = PBXGroup;
 			children = (
 				D92EBA2728F64A7A003AC500 /* GameView.swift */,
-				D94B343728FB2B4B0064AEB8 /* RecordView.swift */,
 				D9D1D6D928FD1DB200BA12CD /* BroadView.swift */,
+				D94B343728FB2B4B0064AEB8 /* RecordView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D9D1D6DB28FD254700BA12CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D907F0CD28F8DCC6008504D5 /* Elements.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

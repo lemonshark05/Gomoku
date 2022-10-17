@@ -15,6 +15,9 @@ struct Play {
 enum GameState{
     case empty, black, white
 }
+enum PlayerState{
+    case empty, black, white
+}
 
 extension UIScreen{
     static let sWidth = UIScreen.main.bounds.size.width

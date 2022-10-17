@@ -12,6 +12,10 @@ SwiftUI : https://developer.apple.com/documentation/swiftui
 
 SF-Symbols-4 : download dmg
 
+Core Graphics：
+
+https://developer.apple.com/documentation/coregraphics
+
 2.Draw a broad
 
 SwiftUI: lines(Path) and point(Circle).

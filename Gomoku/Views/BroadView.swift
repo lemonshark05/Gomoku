@@ -10,8 +10,8 @@ import SwiftUI
 struct BroadView: View {
     var blacksTurn: Bool = true
     var playerSide = GameState.black
-    var AISide = GameState.white
-    var whoTurn = GameState.black
+    var AISide = GameState.black
+    var whoTurn = GameState.white
     var gSpace = UIScreen.LineSpace
     var lineLength = UIScreen.lineLength
     var initH = UIScreen.sHeight/2 - 10*UIScreen.LineSpace/3

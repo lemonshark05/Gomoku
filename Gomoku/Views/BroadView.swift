@@ -15,32 +15,14 @@ struct BroadView: View {
     var initH = UIScreen.sHeight/2 - 10*UIScreen.LineSpace/3
     var initW = UIScreen.sWidth - 2*UIScreen.LineSpace
     
-    var blacksTurn: Bool = true
-    var playerSide = GameState.black
-    var AISide = GameState.white
-    var whoTurn = GameState.black
-    @State private var psize = UIScreen.LineSpace * 0.8
-    @State private var point: CGPoint = CGPoint()
-    @State private var pimg: String = "black"
-    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors:[Color(red: 248/255, green: 206/255, blue: 99/255),Color(red: 218/255, green: 168/255, blue: 58/255), Color(red: 180/255, green: 112/255, blue: 10/255)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .frame(maxWidth:UIScreen.sWidth-8, maxHeight:UIScreen.sWidth-8)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-            Image(pimg)
-                .resizable()
-                .frame(width: psize, height: psize)
-                .position(point)
-                .padding()
             BroadLines.frame(width:initW,height:initH)
             //add center point
             Circle().frame(width: 8,height: 8)
-        }.onTapGesture { location in
-            // to the nearest whole number
-            px = Int(floor(location.x/UIScreen.LineSpace))
-            py = Int(floor(location.y/UIScreen.LineSpace))
-            addChess(PointX: px, PointY: py)
         }
     }
     var BroadLines: some View {
@@ -71,14 +53,6 @@ struct BroadView: View {
                 path.addLine(to: CGPoint(x: lineLength+1, y: 14*self.gSpace))
             }
             .stroke(Color.black, lineWidth: 2)
-        }
-    }
-    func addChess(PointX: Int, PointY: Int) {
-        point = CGPoint(x: CGFloat(PointX) * UIScreen.LineSpace, y: CGFloat(PointY)*UIScreen.LineSpace)
-        if(blacksTurn == true) {
-            pimg = "black"
-        } else {
-            pimg = "white"
         }
     }
 }

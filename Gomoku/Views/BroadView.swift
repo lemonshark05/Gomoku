@@ -12,7 +12,8 @@ struct BroadView: View {
     var parray = [[Int]]()
     var gSpace = UIScreen.LineSpace
     var lineLength = UIScreen.lineLength
-    var initH = UIScreen.sHeight/2 - 10*UIScreen.LineSpace/3
+//    var initH = UIScreen.sHeight/2 - 10*UIScreen.LineSpace/3
+    var initH = 14*UIScreen.LineSpace
     var initW = UIScreen.sWidth - 2*UIScreen.LineSpace
     
     var body: some View {
@@ -20,8 +21,7 @@ struct BroadView: View {
             LinearGradient(gradient: Gradient(colors:[Color(red: 248/255, green: 206/255, blue: 99/255),Color(red: 218/255, green: 168/255, blue: 58/255), Color(red: 180/255, green: 112/255, blue: 10/255)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .frame(maxWidth:UIScreen.sWidth-8, maxHeight:UIScreen.sWidth-8)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-            
-            BroadLines.frame(width:initW,height:initH)
+            BroadLines.frame(width:initW,height:initH,alignment: .center)
             //add center point
             Circle().frame(width: 8,height: 8)
         }

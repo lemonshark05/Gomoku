@@ -13,26 +13,32 @@ struct GameView: View {
     var AISide = GameState.white
     var whoTurn = GameState.black
     @State public var psize = UIScreen.LineSpace * 0.9
+//    @State public var points: CGPoint = CGPoint()
     @State public var point: CGPoint = CGPoint()
     @State public var pimg: String = "black"
     
     var body: some View {
         ZStack {
             BroadView()
-                .onTapGesture { location in
-                //round to the nearest integer value
+//                .onTapGesture { location in
+//                //round to the nearest integer value
+//                px = Int(round(location.x/UIScreen.LineSpace))
+//                py = Int(round(location.y/UIScreen.LineSpace))
+//                print("PointX: \(px), PointY: \(py)")
+////                point = CGPoint(x: (CGFloat(px)-0.3) * UIScreen.LineSpace, y: (CGFloat(py)+2.7)*UIScreen.LineSpace)
+//                point = CGPoint(x: (CGFloat(px)-0.3) * UIScreen.LineSpace, y: (CGFloat(py)+2.7)*UIScreen.LineSpace)
+//
+//            }
+            .onTapGesture { location in
                 px = Int(round(location.x/UIScreen.LineSpace))
                 py = Int(round(location.y/UIScreen.LineSpace))
-                print("PointX: \(px), PointY: \(py)")
-                    point = CGPoint(x: (CGFloat(px)-0.3) * UIScreen.LineSpace, y: (CGFloat(py)+2.7)*UIScreen.LineSpace)
-
+                addChess(PointX: px, PointY: py)
             }
-            Image(pimg)
-                .resizable()
-                .scaleEffect(anchor: .top)
-                .frame(width: psize, height: psize)
-                .position(point)
-                .padding()
+//            Image(pimg)
+//                .resizable()
+//                .frame(width: psize, height: psize)
+//                .position(point)
+//                .padding()
         }
     }
     func addChess(PointX: Int, PointY: Int) {
@@ -43,11 +49,6 @@ struct GameView: View {
         } else {
             pimg = "white"
         }
-//        Circle()
-//            .fill(Color.red)
-//            .scaleEffect(anchor: .top)
-//            .frame(width: psize,height: psize)
-//            .position(point)
 //        Image(pimg)
 //            .resizable()
 //            .scaleEffect(anchor: .top)

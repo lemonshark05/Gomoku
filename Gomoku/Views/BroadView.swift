@@ -11,16 +11,22 @@ struct BroadView: View {
     
     var gSpace = UIScreen.LineSpace
     var lineLength = UIScreen.lineLength
-    var initL = UIScreen.lineLength
-    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors:[Color(red: 248/255, green: 206/255, blue: 99/255),Color(red: 218/255, green: 168/255, blue: 58/255), Color(red: 180/255, green: 112/255, blue: 10/255)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .frame(maxWidth:UIScreen.sWidth-UIScreen.sideW, maxHeight:UIScreen.sWidth-UIScreen.sideW)
                 .clipShape(RoundedRectangle(cornerRadius: UIScreen.sideW+2))
-            BroadLines.frame(width:initL,height:initL,alignment: .center)
+            BroadLines.frame(width:lineLength,height:lineLength,alignment: .center)
             //add center point
             Circle().frame(width: UIScreen.sideW,height: UIScreen.sideW)
+            Circle().position(CGPoint(x: self.gSpace*4+UIScreen.sideW/2-1, y: self.gSpace*4+UIScreen.sideW/2-1))
+                .frame(width: UIScreen.sideW-2,height: UIScreen.sideW-2)
+            Circle().position(CGPoint(x: -self.gSpace*4+UIScreen.sideW/2-1, y: -self.gSpace*4+UIScreen.sideW/2-1))
+                .frame(width: UIScreen.sideW-2,height: UIScreen.sideW-2)
+            Circle().position(CGPoint(x: self.gSpace*4+UIScreen.sideW/2-1, y: -self.gSpace*4+UIScreen.sideW/2-1))
+                .frame(width: UIScreen.sideW-2,height: UIScreen.sideW-2)
+            Circle().position(CGPoint(x: -self.gSpace*4+UIScreen.sideW/2-1, y: self.gSpace*4+UIScreen.sideW/2-1))
+                .frame(width: UIScreen.sideW-2,height: UIScreen.sideW-2)
         }
     }
     var BroadLines: some View {

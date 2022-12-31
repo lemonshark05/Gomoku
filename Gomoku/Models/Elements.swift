@@ -5,17 +5,36 @@
 //  Created by lemonshark on 2022/10/13.
 //
 
-import Foundation
+import SwiftUI
 import UIKit
+
+class Elements: ObservableObject {
+    var row: Int
+    var col: Int
+    @Published var status: GameState
+    @Published var isOccupy: Bool
+    
+//    var image: Image {
+//        switch status {
+//        case .black:
+//            return Image("black")
+//        case .white:
+//            return Image("white")
+//        }
+//    }
+//    
+    init(row: Int, col: Int) {
+        self.row = row
+        self.col = col
+        self.status = .empty
+        self.isOccupy = false
+    }
+}
 
 var px: Int = 0
 var py: Int = 0
 
 let GMap = [ 0:"a", 1:"b", 2:"c", 3:"d", 4:"e", 5:"f", 6:"g", 7:"h", 8:"i", 9:"j", 10:"k", 11:"l", 12:"m", 13:"n", 14:"o"]
-
-struct Play {
-    var type: Int
-}
 
 enum GameState{
     case empty, black, white

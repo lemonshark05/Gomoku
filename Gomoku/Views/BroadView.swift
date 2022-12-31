@@ -16,11 +16,11 @@ struct BroadView: View {
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors:[Color(red: 248/255, green: 206/255, blue: 99/255),Color(red: 218/255, green: 168/255, blue: 58/255), Color(red: 180/255, green: 112/255, blue: 10/255)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .frame(maxWidth:UIScreen.sWidth-8, maxHeight:UIScreen.sWidth-8)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .frame(maxWidth:UIScreen.sWidth-UIScreen.sideW, maxHeight:UIScreen.sWidth-UIScreen.sideW)
+                .clipShape(RoundedRectangle(cornerRadius: UIScreen.sideW+2))
             BroadLines.frame(width:initL,height:initL,alignment: .center)
             //add center point
-            Circle().frame(width: 8,height: 8)
+            Circle().frame(width: UIScreen.sideW,height: UIScreen.sideW)
         }
     }
     var BroadLines: some View {

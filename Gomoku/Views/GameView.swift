@@ -17,13 +17,24 @@ struct GameView: View {
     @State public var pimg: String = "black"
     
     var body: some View {
-            BroadView().onTapGesture { location in
+        ZStack {
+            BroadView()
+                .onTapGesture { location in
                 //round to the nearest integer value
-                px = Int(round(location.x/UIScreen.LineSpace)-1)
-                py = Int(round(location.y/UIScreen.LineSpace)-1)
-                addChess(PointX: px, PointY: py)
+                px = Int(round(location.x/UIScreen.LineSpace))
+                py = Int(round(location.y/UIScreen.LineSpace))
+                print("PointX: \(px), PointY: \(py)")
+                    point = CGPoint(x: (CGFloat(px)-0.3) * UIScreen.LineSpace, y: (CGFloat(py)+2.7)*UIScreen.LineSpace)
+
             }
+            Image(pimg)
+                .resizable()
+                .scaleEffect(anchor: .top)
+                .frame(width: psize, height: psize)
+                .position(point)
+                .padding()
         }
+    }
     func addChess(PointX: Int, PointY: Int) {
         print("PointX: \(PointX), PointY: \(PointY)")
         point = CGPoint(x: CGFloat(PointX) * UIScreen.LineSpace, y: CGFloat(PointY)*UIScreen.LineSpace)
@@ -32,6 +43,17 @@ struct GameView: View {
         } else {
             pimg = "white"
         }
+//        Circle()
+//            .fill(Color.red)
+//            .scaleEffect(anchor: .top)
+//            .frame(width: psize,height: psize)
+//            .position(point)
+//        Image(pimg)
+//            .resizable()
+//            .scaleEffect(anchor: .top)
+//            .frame(width: psize, height: psize)
+//            .position(point)
+//            .padding()
     }
 }
 

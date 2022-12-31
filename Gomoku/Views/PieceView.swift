@@ -12,8 +12,8 @@ struct PieceView: View {
         ele.image
             .resizable()
             .scaledToFill()
-            .frame(width: UIScreen.LineSpace * 0.9,
-                   height: UIScreen.LineSpace * 0.9,
+            .frame(width: UIScreen.LineSpace,
+                   height: UIScreen.LineSpace,
                    alignment: .center)
             .position(CGPoint(x:(CGFloat(ele.row)-0.3) * UIScreen.LineSpace, y: (CGFloat(ele.col)+2.7)*UIScreen.LineSpace))
             .padding()

@@ -38,9 +38,6 @@ struct GameView: View {
             }
         }
     }
-    func addChess() {
-        
-    }
 }
 
 struct GameView_Previews: PreviewProvider {

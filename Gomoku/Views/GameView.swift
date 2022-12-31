@@ -18,18 +18,21 @@ struct GameView: View {
     
     var body: some View {
             BroadView().onTapGesture { location in
-                px = Int(location.x/UIScreen.LineSpace)
-                py = Int(location.y/UIScreen.LineSpace)
+                //round to the nearest integer value
+                px = Int(round(location.x/UIScreen.LineSpace))
+                py = Int(round(location.y/UIScreen.LineSpace))
                 addChess(PointX: px, PointY: py)
             }
         }
     func addChess(PointX: Int, PointY: Int) {
+        print("PointX: \(PointX), PointY: \(PointY)")
         point = CGPoint(x: CGFloat(PointX) * UIScreen.LineSpace, y: CGFloat(PointY)*UIScreen.LineSpace)
         if(blacksTurn == true) {
             pimg = "black"
         } else {
             pimg = "white"
         }
+        
     }
 }
 

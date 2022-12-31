@@ -9,11 +9,9 @@ import SwiftUI
 
 struct BroadView: View {
     
-    var parray = [[Int]]()
     var gSpace = UIScreen.LineSpace
     var lineLength = UIScreen.lineLength
-//    var initH = UIScreen.sHeight/2 - 10*UIScreen.LineSpace/3
-    var initH = 14*UIScreen.LineSpace
+    var initH = UIScreen.lineLength
     var initW = UIScreen.sWidth - 2*UIScreen.LineSpace
     
     var body: some View {

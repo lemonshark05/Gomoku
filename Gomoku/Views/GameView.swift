@@ -8,53 +8,38 @@
 import SwiftUI
 
 struct GameView: View {
-    var blacksTurn: Bool = true
+    @State private var blacksTurn: Bool = true
     var playerSide = GameState.black
     var AISide = GameState.white
     var whoTurn = GameState.black
     @State public var psize = UIScreen.LineSpace * 0.9
-//    @State public var points: CGPoint = CGPoint()
-    @State public var point: CGPoint = CGPoint()
+    @State public var points: Array<Elements> = Array()
+    
+    @State public var pointLocation: CGPoint = CGPoint()
     @State public var pimg: String = "black"
     
     var body: some View {
         ZStack {
             BroadView()
-//                .onTapGesture { location in
-//                //round to the nearest integer value
-//                px = Int(round(location.x/UIScreen.LineSpace))
-//                py = Int(round(location.y/UIScreen.LineSpace))
-//                print("PointX: \(px), PointY: \(py)")
-////                point = CGPoint(x: (CGFloat(px)-0.3) * UIScreen.LineSpace, y: (CGFloat(py)+2.7)*UIScreen.LineSpace)
-//                point = CGPoint(x: (CGFloat(px)-0.3) * UIScreen.LineSpace, y: (CGFloat(py)+2.7)*UIScreen.LineSpace)
-//
-//            }
-            .onTapGesture { location in
+                .onTapGesture { location in
+                //round to the nearest integer value
                 px = Int(round(location.x/UIScreen.LineSpace))
                 py = Int(round(location.y/UIScreen.LineSpace))
-                addChess(PointX: px, PointY: py)
+                if(blacksTurn){
+                    points.append(Elements(row: px, col: py,status: .black))
+                    blacksTurn = false
+                }else{
+                    points.append(Elements(row: px, col: py,status: .white))
+                    blacksTurn = true
+                }
             }
-//            Image(pimg)
-//                .resizable()
-//                .frame(width: psize, height: psize)
-//                .position(point)
-//                .padding()
+            ForEach(0..<points.count, id: \.self) { i in
+                PieceView(ele: Elements(row: points[i].row, col: points[i].col, status: points[i].status))
+            }
         }
     }
-    func addChess(PointX: Int, PointY: Int) {
-        print("PointX: \(PointX), PointY: \(PointY)")
-        point = CGPoint(x: CGFloat(PointX) * UIScreen.LineSpace, y: CGFloat(PointY)*UIScreen.LineSpace)
-        if(blacksTurn == true) {
-            pimg = "black"
-        } else {
-            pimg = "white"
-        }
-//        Image(pimg)
-//            .resizable()
-//            .scaleEffect(anchor: .top)
-//            .frame(width: psize, height: psize)
-//            .position(point)
-//            .padding()
+    func addChess() {
+        
     }
 }
 

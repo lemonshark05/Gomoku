@@ -19,8 +19,8 @@ struct GameView: View {
     var body: some View {
             BroadView().onTapGesture { location in
                 //round to the nearest integer value
-                px = Int(round(location.x/UIScreen.LineSpace))
-                py = Int(round(location.y/UIScreen.LineSpace))
+                px = Int(round(location.x/UIScreen.LineSpace)-1)
+                py = Int(round(location.y/UIScreen.LineSpace)-1)
                 addChess(PointX: px, PointY: py)
             }
         }
@@ -32,7 +32,6 @@ struct GameView: View {
         } else {
             pimg = "white"
         }
-        
     }
 }
 

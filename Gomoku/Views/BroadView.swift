@@ -11,15 +11,14 @@ struct BroadView: View {
     
     var gSpace = UIScreen.LineSpace
     var lineLength = UIScreen.lineLength
-    var initH = UIScreen.lineLength
-    var initW = UIScreen.sWidth - 2*UIScreen.LineSpace
+    var initL = UIScreen.lineLength
     
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors:[Color(red: 248/255, green: 206/255, blue: 99/255),Color(red: 218/255, green: 168/255, blue: 58/255), Color(red: 180/255, green: 112/255, blue: 10/255)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .frame(maxWidth:UIScreen.sWidth-8, maxHeight:UIScreen.sWidth-8)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-            BroadLines.frame(width:initW,height:initH,alignment: .center)
+            BroadLines.frame(width:initL,height:initL,alignment: .center)
             //add center point
             Circle().frame(width: 8,height: 8)
         }

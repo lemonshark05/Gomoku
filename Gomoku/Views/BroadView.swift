@@ -19,6 +19,7 @@ struct BroadView: View {
             BroadLines.frame(width:lineLength,height:lineLength,alignment: .center)
             //add center point
             Circle().frame(width: UIScreen.sideW,height: UIScreen.sideW)
+            //add 4 points
             Circle().position(CGPoint(x: self.gSpace*4+UIScreen.sideW/2-1, y: self.gSpace*4+UIScreen.sideW/2-1))
                 .frame(width: UIScreen.sideW-2,height: UIScreen.sideW-2)
             Circle().position(CGPoint(x: -self.gSpace*4+UIScreen.sideW/2-1, y: -self.gSpace*4+UIScreen.sideW/2-1))

@@ -12,11 +12,7 @@ struct GameView: View {
     var playerSide = GameState.black
     var AISide = GameState.white
     var whoTurn = GameState.black
-    @State public var psize = UIScreen.LineSpace * 0.9
     @State public var points: Array<Elements> = Array()
-    
-    @State public var pointLocation: CGPoint = CGPoint()
-    @State public var pimg: String = "black"
     
     var body: some View {
         ZStack {

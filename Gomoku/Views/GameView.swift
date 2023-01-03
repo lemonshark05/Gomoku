@@ -22,6 +22,7 @@ struct GameView: View {
                     px = Int(round(location.x/UIScreen.LineSpace))
                     py = Int(round(location.y/UIScreen.LineSpace))
                     game.addPiece(px: px, py: py)
+
                 }
             ForEach(0..<game.points.count, id: \.self) { i in
                 PieceView(ele: Elements(row: game.points[i].row, col: game.points[i].col, status: game.points[i].status))

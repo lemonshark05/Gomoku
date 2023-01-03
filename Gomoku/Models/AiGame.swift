@@ -19,14 +19,6 @@ class AiGame: ObservableObject {
         self.steps = "_h8"
     }
     
-    func stepsString(points: Array<Elements>)-> String {
-        steps = ""
-        points.forEach { p in
-            steps = steps + "_" + PDict[p.row]! + "\(p.col)"
-        }
-        return steps
-    }
-    
     func stringToPoints(mySteps: String)-> Array<Elements> {
         var res: Array<Elements> = Array()
         let steplist:[String] = mySteps.components(separatedBy: "_")
@@ -47,13 +39,24 @@ class AiGame: ObservableObject {
     }
     
     func addPiece(px:Int, py:Int){
+        // (x,y) must be in (1,1)~(15,15)
         if(0<px && px<16 && 0<py && py<16){
-            if(self.blacksTurn){
-                self.points.append(Elements(row: px, col: py,status: .black))
-                self.blacksTurn = false
-            }else{
-                self.points.append(Elements(row: px, col: py,status: .white))
-                self.blacksTurn = true
+            let s = pointToString(px: px, py: py)
+            var flag:Bool = true
+            for p in points{
+                if(p.str == s){
+                    flag = false
+                }
+            }
+            if(flag){
+                if(self.blacksTurn){
+                    self.points.append(Elements(row: px, col: py,status: .black))
+                    self.blacksTurn = false
+                }else{
+                    self.points.append(Elements(row: px, col: py,status: .white))
+                    self.blacksTurn = true
+                }
+                print("PointX: \(px), PointY: \(py), String: \(pointToString(px: px, py: py))")
             }
         }
     }

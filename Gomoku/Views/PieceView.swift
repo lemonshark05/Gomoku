@@ -11,7 +11,7 @@ struct PieceView: View {
     var ele: Elements
     
     var body: some View {
-        ZStack(alignment:.center){
+//        ZStack(alignment:.center){
             ele.image
                 .resizable()
                 .frame(width: UIScreen.LineSpace,
@@ -19,12 +19,11 @@ struct PieceView: View {
                 .position(CGPoint(x:(CGFloat(ele.row)-0.3) * UIScreen.LineSpace, y: (CGFloat(ele.col)+2.7)*UIScreen.LineSpace))
     //            .position(CGPoint(x:CGFloat(ele.row) * UIScreen.LineSpace, y: CGFloat(ele.col) * UIScreen.LineSpace))
                 .padding()
-        }
-    
+//        }
     }
 }
 struct PieceView_Previews: PreviewProvider {
     static var previews: some View {
-        PieceView(ele: Elements(row: 0, col:0, status: .black))
+        PieceView(ele: Elements(row: 1, col:1, status: .black))
     }
 }

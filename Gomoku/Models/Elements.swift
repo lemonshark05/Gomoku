@@ -9,8 +9,8 @@ import SwiftUI
 import UIKit
 
 class Elements: ObservableObject {
-    var row: Int = 0
-    var col: Int = 0
+    var row: Int = 1
+    var col: Int = 1
     var status: GameState = .black
     var str: String = "_h8"
     
@@ -34,7 +34,7 @@ class Elements: ObservableObject {
 }
 
 func pointToString(px:Int, py:Int)-> String {
-    return "_\(PDict[px]!)\(py)"
+    return "_" + PDict[px]! + "\(py)"
 }
 
 var px: Int = 0

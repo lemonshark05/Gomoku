@@ -15,8 +15,8 @@ struct PieceView: View {
             .resizable()
             .frame(width: UIScreen.LineSpace,
                    height: UIScreen.LineSpace,alignment: .center)
-//            .position(CGPoint(x:(CGFloat(ele.row)-0.3) * UIScreen.LineSpace, y: (CGFloat(ele.col)+2.7)*UIScreen.LineSpace))
-            .position(CGPoint(x:CGFloat(ele.row) * UIScreen.LineSpace, y: CGFloat(ele.col) * UIScreen.LineSpace))
+            .position(CGPoint(x:(CGFloat(ele.row)-0.3) * UIScreen.LineSpace, y: (CGFloat(ele.col)+2.7)*UIScreen.LineSpace))
+//            .position(CGPoint(x:CGFloat(ele.row) * UIScreen.LineSpace, y: CGFloat(ele.col) * UIScreen.LineSpace))
             .padding()
     }
 }

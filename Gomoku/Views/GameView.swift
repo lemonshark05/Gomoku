@@ -23,12 +23,15 @@ struct GameView: View {
                     //round to the nearest integer value
                     px = Int(round(location.x/UIScreen.LineSpace))
                     py = Int(round(location.y/UIScreen.LineSpace))
-                    if(blacksTurn){
-                        points.append(Elements(row: px, col: py,status: .black))
-                        blacksTurn = false
-                    }else{
-                        points.append(Elements(row: px, col: py,status: .white))
-                        blacksTurn = true
+                    // (x,y) must be in (1,1)~(15,15)
+                    if(0<px && px<16 && 0<py && py<16){
+                        if(blacksTurn){
+                            points.append(Elements(row: px, col: py,status: .black))
+                            blacksTurn = false
+                        }else{
+                            points.append(Elements(row: px, col: py,status: .white))
+                            blacksTurn = true
+                        }
                     }
                 }
             ForEach(0..<points.count, id: \.self) { i in

@@ -46,6 +46,18 @@ class AiGame: ObservableObject {
         
     }
     
+    func addPiece(px:Int, py:Int){
+        if(0<px && px<16 && 0<py && py<16){
+            if(self.blacksTurn){
+                self.points.append(Elements(row: px, col: py,status: .black))
+                self.blacksTurn = false
+            }else{
+                self.points.append(Elements(row: px, col: py,status: .white))
+                self.blacksTurn = true
+            }
+        }
+    }
+    
     func reset() {
         WinResult = false
         playWon = false

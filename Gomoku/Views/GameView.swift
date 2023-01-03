@@ -21,16 +21,7 @@ struct GameView: View {
                     //round to the nearest integer value
                     px = Int(round(location.x/UIScreen.LineSpace))
                     py = Int(round(location.y/UIScreen.LineSpace))
-                    // (x,y) must be in (1,1)~(15,15)
-                    if(0<px && px<16 && 0<py && py<16){
-                        if(game.blacksTurn){
-                            game.points.append(Elements(row: px, col: py,status: .black))
-                            game.blacksTurn = false
-                        }else{
-                            game.points.append(Elements(row: px, col: py,status: .white))
-                            game.blacksTurn = true
-                        }
-                    }
+                    game.addPiece(px: px, py: py)
                 }
             ForEach(0..<game.points.count, id: \.self) { i in
                 PieceView(ele: Elements(row: game.points[i].row, col: game.points[i].col, status: game.points[i].status))

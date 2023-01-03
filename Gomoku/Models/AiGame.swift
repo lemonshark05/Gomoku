@@ -19,21 +19,6 @@ class AiGame: ObservableObject {
         self.steps = "_h8"
     }
     
-    func stringToPoints(mySteps: String)-> Array<Elements> {
-        var res: Array<Elements> = Array()
-        let steplist:[String] = mySteps.components(separatedBy: "_")
-        var i:Int = 0
-        for s in steplist{
-//            if(i%2==0){
-//                res.append(Elements(row: JDict[String(s[0])] ?? <#default value#>!, col: 1, status: .black))
-//            }else {
-//                res.append(Elements(row: JDict[String(s[0])] ?? <#default value#>!, col: 1, status: .white))
-//            }
-            i = i+1
-        }
-        return res
-    }
-    
     func aiPoint(){
         
     }
@@ -59,6 +44,10 @@ class AiGame: ObservableObject {
                 print("PointX: \(px), PointY: \(py), String: \(pointToString(px: px, py: py))")
             }
         }
+    }
+    
+    func withdraw(){
+        points.removeLast();
     }
     
     func reset() {

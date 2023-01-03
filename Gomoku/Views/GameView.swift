@@ -24,6 +24,7 @@ struct GameView: View {
                     game.addPiece(px: px, py: py)
 
                 }
+            //Pieces layout
             ForEach(0..<game.points.count, id: \.self) { i in
                 PieceView(ele: Elements(row: game.points[i].row, col: game.points[i].col, status: game.points[i].status))
             }

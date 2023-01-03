@@ -27,22 +27,19 @@ class AiGame: ObservableObject {
         // (x,y) must be in (1,1)~(15,15)
         if(0<px && px<16 && 0<py && py<16){
             let s = pointToString(px: px, py: py)
-            var flag:Bool = true
             for p in points{
                 if(p.str == s){
-                    flag = false
+                    return
                 }
             }
-            if(flag){
-                if(self.blacksTurn){
-                    self.points.append(Elements(row: px, col: py,status: .black))
-                    self.blacksTurn = false
-                }else{
-                    self.points.append(Elements(row: px, col: py,status: .white))
-                    self.blacksTurn = true
-                }
-                print("PointX: \(px), PointY: \(py), String: \(pointToString(px: px, py: py))")
+            if(self.blacksTurn){
+                self.points.append(Elements(row: px, col: py,status: .black))
+                self.blacksTurn = false
+            }else{
+                self.points.append(Elements(row: px, col: py,status: .white))
+                self.blacksTurn = true
             }
+            print("PointX: \(px), PointY: \(py), String: \(pointToString(px: px, py: py))")
         }
     }
     

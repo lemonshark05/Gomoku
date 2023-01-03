@@ -34,7 +34,7 @@ class Elements: ObservableObject {
 }
 
 func pointToString(px:Int, py:Int)-> String {
-    return "_" + PDict[px]! + "\(py)"
+    return "_\(PDict[px]!)\(py)"
 }
 
 var px: Int = 0

@@ -12,10 +12,12 @@ struct GameView: View {
     var playerSide = GameState.black
     var AISide = GameState.white
     var whoTurn = GameState.black
+    
     @EnvironmentObject var game: AiGame
     
     var body: some View {
         ZStack {
+            ButtonView()
             BroadView()
                 .onTapGesture { location in
                     //round to the nearest integer value

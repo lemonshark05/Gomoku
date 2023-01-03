@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BroadView: View {
-    @State public var xvalue:CGFloat = 0
     var gSpace = UIScreen.LineSpace
     var lineLength = UIScreen.lineLength
     var body: some View {
@@ -36,9 +35,6 @@ struct BroadView: View {
                 //15 * 15 broad
                 for index in 0...14 {
                     let vOffset: CGFloat = CGFloat(index) * self.gSpace
-                    if(index == 0){
-                        xvalue = vOffset
-                    }
                     path.move(to: CGPoint(x: vOffset, y: 0))
                     path.addLine(to: CGPoint(x: vOffset, y: lineLength))
                 }

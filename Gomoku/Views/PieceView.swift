@@ -11,13 +11,16 @@ struct PieceView: View {
     var ele: Elements
     
     var body: some View {
-        ele.image
-            .resizable()
-            .frame(width: UIScreen.LineSpace,
-                   height: UIScreen.LineSpace,alignment: .center)
-            .position(CGPoint(x:(CGFloat(ele.row)-0.3) * UIScreen.LineSpace, y: (CGFloat(ele.col)+2.7)*UIScreen.LineSpace))
-//            .position(CGPoint(x:CGFloat(ele.row) * UIScreen.LineSpace, y: CGFloat(ele.col) * UIScreen.LineSpace))
-            .padding()
+        ZStack(alignment:.center){
+            ele.image
+                .resizable()
+                .frame(width: UIScreen.LineSpace,
+                       height: UIScreen.LineSpace,alignment: .center)
+                .position(CGPoint(x:(CGFloat(ele.row)-0.3) * UIScreen.LineSpace, y: (CGFloat(ele.col)+2.7)*UIScreen.LineSpace))
+    //            .position(CGPoint(x:CGFloat(ele.row) * UIScreen.LineSpace, y: CGFloat(ele.col) * UIScreen.LineSpace))
+                .padding()
+        }
+    
     }
 }
 struct PieceView_Previews: PreviewProvider {

@@ -8,7 +8,7 @@
 import Foundation
 
 class AiGame: ObservableObject {
-    @Published var steps:String
+    @Published var steps: String = ""
     @Published var WinResult: Bool = false
     @Published var playWon: Bool = false
     
@@ -16,7 +16,7 @@ class AiGame: ObservableObject {
     @Published var points: Array<Elements> = Array()
     
     init() {
-        self.steps = "_h8"
+        steps = ""
     }
     
     func aiPoint(){
@@ -32,22 +32,33 @@ class AiGame: ObservableObject {
                     return
                 }
             }
-            if(self.blacksTurn){
-                self.points.append(Elements(row: px, col: py,status: .black))
-                self.blacksTurn = false
+            if(blacksTurn){
+                points.append(Elements(row: px, col: py,status: .black))
+                steps = steps + pointToString(px: px, py: py)
+                blacksTurn = false
             }else{
-                self.points.append(Elements(row: px, col: py,status: .white))
-                self.blacksTurn = true
+                points.append(Elements(row: px, col: py,status: .white))
+                steps = steps + pointToString(px: px, py: py)
+                blacksTurn = true
             }
-            print("PointX: \(px), PointY: \(py), String: \(pointToString(px: px, py: py))")
+//            print("PointX: \(px), PointY: \(py), String: \(pointToString(px: px, py: py))")
+            print(steps)
         }
     }
     
     func withdraw(){
         points.removeLast();
+        if(blacksTurn){
+            blacksTurn = false
+        }else{
+            blacksTurn = true
+        }
     }
     
     func reset() {
+        steps = ""
+        points.removeAll()
+        blacksTurn = true
         WinResult = false
         playWon = false
     }
@@ -61,7 +72,7 @@ class AiGame: ObservableObject {
             guard let data = data, err == nil else { return }
             do {
                 let json = try JSONDecoder().decode(JsonDate.self, from: data)
-                self.points.append(Elements(row: Int(json.x), col: Int(json.y),status: .black))
+                self.points.append(Elements(row: Int(json.x), col: Int(json.y), status: .black))
                 self.blacksTurn = true
             } catch let jsonErr {
                 print("failed to decode json:", jsonErr)

@@ -11,7 +11,7 @@ import SwiftUI
 struct GomokuApp: App {
     var body: some Scene {
         WindowGroup {
-            GameView()
+            GameView().environmentObject(AiGame())
         }
     }
 }

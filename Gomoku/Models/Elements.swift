@@ -9,8 +9,8 @@ import SwiftUI
 import UIKit
 
 class Elements: ObservableObject {
-    var row: Int
-    var col: Int
+    var row: Int = 0
+    var col: Int = 0
     var status: GameState = .black
     
     var image: Image {
@@ -42,7 +42,7 @@ enum GameState{
 }
 
 //{"input": "h8_a1_i9_a2", "x": 9, "y": 9}
-struct JsonDate: Codable {
+struct JsonDate: Decodable {
     let input: String
     let x: Int
     let y: Int

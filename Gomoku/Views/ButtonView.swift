@@ -10,9 +10,9 @@ import SwiftUI
 struct ButtonView: View {
     @EnvironmentObject var game: AiGame
     var body: some View {
-        ZStack(){
+        VStack{
             Button(action: game.withdraw
-                , label: {
+                   , label: {
                 HStack(content: {
                     Image(systemName: "circle")
                         .font(.title)
@@ -25,7 +25,7 @@ struct ButtonView: View {
                 .cornerRadius(40)
             })
             Button(action: game.reset
-                , label: {
+                   , label: {
                 HStack(content: {
                     Image(systemName: "circle")
                         .font(.title)

@@ -47,11 +47,14 @@ class AiGame: ObservableObject {
     }
     
     func withdraw(){
-        points.removeLast();
-        if(blacksTurn){
-            blacksTurn = false
-        }else{
-            blacksTurn = true
+        print("Withdraw Button click")
+        if(points.count>0){
+            points.removeLast();
+            if(blacksTurn){
+                blacksTurn = false
+            }else{
+                blacksTurn = true
+            }
         }
     }
     

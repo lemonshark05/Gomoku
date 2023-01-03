@@ -30,7 +30,6 @@ struct GameView: View {
             ForEach(0..<game.points.count, id: \.self) { i in
                 PieceView(ele: Elements(row: game.points[i].row, col: game.points[i].col, status: game.points[i].status))
             }
-            
         }.alert(isPresented: $game.WinResult) {
             Alert(title: Text(game.playWon ? "Wow" : "Oh no!"),
                 message: Text(game.playWon ? "You won the match" :"Better luck next time"),

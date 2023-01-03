@@ -14,8 +14,8 @@ struct ButtonView: View {
             Button(action: game.withdraw
                    , label: {
                 HStack(content: {
-                    Image(systemName: "circle")
-                        .font(.title)
+                    Image(systemName: "arrowshape.turn.up.backward.2.fill")
+                        .font(.title).bold()
                     Text("Back")
                         .font(.title).bold()
                 })
@@ -27,8 +27,8 @@ struct ButtonView: View {
             Button(action: game.reset
                    , label: {
                 HStack(content: {
-                    Image(systemName: "circle")
-                        .font(.title)
+                    Image(systemName: "circle.circle.fill")
+                        .font(.title).bold()
                     Text("Reset")
                         .font(.title).bold()
                 })

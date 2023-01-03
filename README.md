@@ -23,4 +23,5 @@ SwiftUI: lines(Path) and point(Circle).
 <img width="339" alt="Screen Shot 2022-10-16 at 15 34 00" src="https://user-images.githubusercontent.com/100770743/196061652-38b8b9ec-32dd-42d3-9337-ce61c50d8e04.png">
 
 3. Get the one piece position
-CGPoint
+CGPoint & CGFloat & CGReact
+<img width="390" alt="Screen Shot 2023-01-03 at 14 44 16" src="https://user-images.githubusercontent.com/100770743/210453696-3b138711-f5a8-4f23-b160-c17381b48a23.png">

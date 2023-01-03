@@ -9,11 +9,9 @@ import SwiftUI
 
 struct GameView: View {
     
-    @State private var blacksTurn: Bool = true
     var playerSide = GameState.black
     var AISide = GameState.white
     var whoTurn = GameState.black
-    @State public var points: Array<Elements> = Array()
     @EnvironmentObject var game: AiGame
     
     var body: some View {
@@ -25,17 +23,17 @@ struct GameView: View {
                     py = Int(round(location.y/UIScreen.LineSpace))
                     // (x,y) must be in (1,1)~(15,15)
                     if(0<px && px<16 && 0<py && py<16){
-                        if(blacksTurn){
-                            points.append(Elements(row: px, col: py,status: .black))
-                            blacksTurn = false
+                        if(game.blacksTurn){
+                            game.points.append(Elements(row: px, col: py,status: .black))
+                            game.blacksTurn = false
                         }else{
-                            points.append(Elements(row: px, col: py,status: .white))
-                            blacksTurn = true
+                            game.points.append(Elements(row: px, col: py,status: .white))
+                            game.blacksTurn = true
                         }
                     }
                 }
-            ForEach(0..<points.count, id: \.self) { i in
-                PieceView(ele: Elements(row: points[i].row, col: points[i].col, status: points[i].status))
+            ForEach(0..<game.points.count, id: \.self) { i in
+                PieceView(ele: Elements(row: game.points[i].row, col: game.points[i].col, status: game.points[i].status))
             }
             
         }.alert(isPresented: $game.WinResult) {

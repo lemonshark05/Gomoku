@@ -4,6 +4,8 @@ Swift5.7 + Xcode 14
 
 icon : SF-Symbols-4
 
+version: iPad pro 11 (4th generation)
+
 Offical Resources:
 
 Swift5 : https://docs.swift.org/swift-book/

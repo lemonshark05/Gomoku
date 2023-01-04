@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 class AiGame: ObservableObject {
-    @Published var steps: String = ""
+    @Published var steps: String = "_h8"
     @Published var WinResult: Bool = false
     @Published var playWon: Bool = false
     
@@ -57,12 +57,24 @@ class AiGame: ObservableObject {
     
     func withdraw(){
         print("Withdraw Button click")
-        if(points.count>1){
-            points.removeLast();
-            if(blacksTurn){
-                blacksTurn = false
-            }else{
-                blacksTurn = true
+        if(AISide){
+            if(points.count>1){
+                points.removeLast();
+                if(blacksTurn&&points.count>1){
+                    points.removeLast();
+                    blacksTurn = false
+                }else{
+                    blacksTurn = true
+                }
+            }
+        }else{
+            if(points.count>1){
+                points.removeLast();
+                if(blacksTurn){
+                    blacksTurn = false
+                }else{
+                    blacksTurn = true
+                }
             }
         }
     }

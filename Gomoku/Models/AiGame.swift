@@ -7,15 +7,14 @@
 
 import Foundation
 
-@MainActor
 class AiGame: ObservableObject {
     @Published var steps: String = "_h8"
     @Published var WinResult: Bool = false
     @Published var playWon: Bool = false
     
-    var AISide:Bool = true
-    var blacksTurn: Bool = false
-    var points: Array<Elements> = Array()
+    @Published var AISide:Bool = true
+    @Published var blacksTurn: Bool = false
+    @Published var points: Array<Elements> = Array()
     
     init() {
         steps = "_h8"
@@ -58,18 +57,16 @@ class AiGame: ObservableObject {
     func withdraw(){
         print("Withdraw Button click")
         if(AISide){
-            if(points.count>1){
+            if(points.count>2){
                 points.removeLast();
-                if(blacksTurn&&points.count>1){
-                    points.removeLast();
-                    blacksTurn = false
-                }else{
-                    blacksTurn = true
-                }
+                points.removeLast();
+                steps.removeLast(6)
+                print(steps)
             }
         }else{
             if(points.count>1){
                 points.removeLast();
+                steps.removeLast(3)
                 if(blacksTurn){
                     blacksTurn = false
                 }else{
@@ -95,8 +92,8 @@ class AiGame: ObservableObject {
         Task{
             do {
                 let sessionConfig = URLSessionConfiguration.default
-                sessionConfig.timeoutIntervalForRequest = 300
-                sessionConfig.timeoutIntervalForResource = 300
+                sessionConfig.timeoutIntervalForRequest = 30
+                sessionConfig.timeoutIntervalForResource = 30
                 sessionConfig.waitsForConnectivity = true
                 let session = URLSession(configuration: sessionConfig);
                 let (data, _) = try await session.data(from: url)

@@ -51,7 +51,6 @@ enum GameState{
 
 //{"input": "h8_a1_i9_a2", "x": 9, "y": 9}
 struct JsonDate: Decodable {
-    let input: String
     let x: Int
     let y: Int
 }

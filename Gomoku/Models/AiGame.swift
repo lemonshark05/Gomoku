@@ -23,7 +23,7 @@ class AiGame: ObservableObject {
         points.append(Elements(row: 8, col: 8, status: .black))
     }
     
-    func aiPoint(){
+    func isWin(){
         
     }
     
@@ -92,12 +92,14 @@ class AiGame: ObservableObject {
 //    &color=BLACK&level=HIGH&gameId=
     func getJson(){
         guard let url = URL(string: "http://81.70.152.141:8080/?stepsString="+steps) else { return }
-        print("http://81.70.152.141:8080/?stepsString="+steps)
         Task{
             do {
                 let sessionConfig = URLSessionConfiguration.default
-                sessionConfig.timeoutIntervalForRequest = 30.0
-                let (data, _) = try await URLSession.shared.data(from: url)
+                sessionConfig.timeoutIntervalForRequest = 300
+                sessionConfig.timeoutIntervalForResource = 300
+                sessionConfig.waitsForConnectivity = true
+                let session = URLSession(configuration: sessionConfig);
+                let (data, _) = try await session.data(from: url)
                 let json = try JSONDecoder().decode(JsonDate.self, from: data)
                 print(json)
                 points.append(Elements(row: Int(json.x+1), col: Int(json.y+1), status: .black))

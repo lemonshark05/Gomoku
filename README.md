@@ -27,3 +27,6 @@ SwiftUI: lines(Path) and point(Circle).
 3. Get the one piece position
 CGPoint & CGFloat & CGReact
 <img width="390" alt="Screen Shot 2023-01-03 at 14 44 16" src="https://user-images.githubusercontent.com/100770743/210453696-3b138711-f5a8-4f23-b160-c17381b48a23.png">
+
+4. Learning asynchronous code
+https://developer.apple.com/tutorials/app-dev-training/modernizing-asynchronous-code

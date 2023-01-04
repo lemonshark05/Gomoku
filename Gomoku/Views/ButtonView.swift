@@ -10,7 +10,7 @@ import SwiftUI
 struct ButtonView: View {
     @EnvironmentObject var game: AiGame
     var body: some View {
-        VStack{
+        Form{
             Button(action: game.withdraw
                    , label: {
                 HStack(content: {

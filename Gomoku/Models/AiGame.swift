@@ -7,16 +7,20 @@
 
 import Foundation
 
+@MainActor
 class AiGame: ObservableObject {
     @Published var steps: String = ""
     @Published var WinResult: Bool = false
     @Published var playWon: Bool = false
     
-    @Published var blacksTurn: Bool = true
-    @Published var points: Array<Elements> = Array()
+    var AISide:Bool = true
+    var blacksTurn: Bool = false
+    var points: Array<Elements> = Array()
     
     init() {
-        steps = ""
+        steps = "_h8"
+        points.removeAll()
+        points.append(Elements(row: 8, col: 8, status: .black))
     }
     
     func aiPoint(){
@@ -32,14 +36,19 @@ class AiGame: ObservableObject {
                     return
                 }
             }
-            if(blacksTurn){
-                points.append(Elements(row: px, col: py,status: .black))
-                steps = steps + pointToString(px: px, py: py)
-                blacksTurn = false
-            }else{
+            if(AISide){
                 points.append(Elements(row: px, col: py,status: .white))
                 steps = steps + pointToString(px: px, py: py)
-                blacksTurn = true
+            }else{
+                if(blacksTurn){
+                    points.append(Elements(row: px, col: py,status: .black))
+                    steps = steps + pointToString(px: px, py: py)
+                    blacksTurn = false
+                }else{
+                    points.append(Elements(row: px, col: py,status: .white))
+                    steps = steps + pointToString(px: px, py: py)
+                    blacksTurn = true
+                }
             }
 //            print("PointX: \(px), PointY: \(py), String: \(pointToString(px: px, py: py))")
             print(steps)
@@ -48,7 +57,7 @@ class AiGame: ObservableObject {
     
     func withdraw(){
         print("Withdraw Button click")
-        if(points.count>0){
+        if(points.count>1){
             points.removeLast();
             if(blacksTurn){
                 blacksTurn = false
@@ -59,9 +68,10 @@ class AiGame: ObservableObject {
     }
     
     func reset() {
-        steps = ""
+        steps = "_h8"
         points.removeAll()
-        blacksTurn = true
+        points.append(Elements(row: 8, col: 8, status: .black))
+        blacksTurn = false
         WinResult = false
         playWon = false
     }
@@ -70,16 +80,19 @@ class AiGame: ObservableObject {
 //    &color=BLACK&level=HIGH&gameId=
     func getJson(){
         guard let url = URL(string: "http://81.70.152.141:8080/?stepsString="+steps) else { return }
-                
-        URLSession.shared.dataTask(with: url) { data, response, err in
+        print("http://81.70.152.141:8080/?stepsString="+steps)
+        URLSession.shared.dataTask(with: url) { [self] data, response, err in
             guard let data = data, err == nil else { return }
             do {
                 let json = try JSONDecoder().decode(JsonDate.self, from: data)
-                self.points.append(Elements(row: Int(json.x), col: Int(json.y), status: .black))
-                self.blacksTurn = true
+                print(json.input)
+                print("(x,y): (\(json.x+1),\(json.y+1))")
+                points.append(Elements(row: Int(json.x+1), col: Int(json.y+1), status: .black))
+                steps = steps + pointToString(px: Int(json.x+1), py: Int(json.y+1))
+                print(json)
             } catch let jsonErr {
                 print("failed to decode json:", jsonErr)
              }
-        }.resume() // don't forget
+        }.resume()
     }
 }

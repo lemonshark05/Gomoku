@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct GameView: View {
-    
-    var playerSide = GameState.black
-    var AISide = GameState.white
-    var whoTurn = GameState.black
-    
     @EnvironmentObject var game: AiGame
+    var playerSide = GameState.black
+    var whoTurn = GameState.black
     
     var body: some View {
         ZStack {
@@ -23,11 +20,16 @@ struct GameView: View {
                     //round to the nearest integer value
                     px = Int(round(location.x/UIScreen.LineSpace))
                     py = Int(round(location.y/UIScreen.LineSpace))
-                    game.addPiece(px: px, py: py)
-
+                    if(game.AISide){
+                        game.addPiece(px: px, py: py)
+                        game.getJson()
+                    }else{
+                        game.addPiece(px: px, py: py)
+                    }
                 }
+            PieceView(ele: Elements(row: game.points[0].row, col: game.points[0].col, status: game.points[0].status))
             //Pieces layout
-            ForEach(0..<game.points.count, id: \.self) { i in
+            ForEach(1..<game.points.count, id: \.self) { i in
                 PieceView(ele: Elements(row: game.points[i].row, col: game.points[i].col, status: game.points[i].status))
             }
         }.alert(isPresented: $game.WinResult) {

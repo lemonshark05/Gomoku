@@ -10,6 +10,7 @@ import SwiftUI
 struct BroadView: View {
     var gSpace = UIScreen.LineSpace
     var lineLength = UIScreen.lineLength
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors:[Color(red: 248/255, green: 206/255, blue: 99/255),Color(red: 218/255, green: 168/255, blue: 58/255), Color(red: 180/255, green: 112/255, blue: 10/255)]), startPoint: .topLeading, endPoint: .bottomTrailing)

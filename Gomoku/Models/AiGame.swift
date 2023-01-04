@@ -93,18 +93,18 @@ class AiGame: ObservableObject {
     func getJson(){
         guard let url = URL(string: "http://81.70.152.141:8080/?stepsString="+steps) else { return }
         print("http://81.70.152.141:8080/?stepsString="+steps)
-        URLSession.shared.dataTask(with: url) { [self] data, response, err in
-            guard let data = data, err == nil else { return }
+        Task{
             do {
+                let sessionConfig = URLSessionConfiguration.default
+                sessionConfig.timeoutIntervalForRequest = 30.0
+                let (data, _) = try await URLSession.shared.data(from: url)
                 let json = try JSONDecoder().decode(JsonDate.self, from: data)
-                print(json.input)
-                print("(x,y): (\(json.x+1),\(json.y+1))")
+                print(json)
                 points.append(Elements(row: Int(json.x+1), col: Int(json.y+1), status: .black))
                 steps = steps + pointToString(px: Int(json.x+1), py: Int(json.y+1))
-                print(json)
-            } catch let jsonErr {
-                print("failed to decode json:", jsonErr)
-             }
-        }.resume()
+            }catch {
+                debugPrint("Error loading \(url): \(String(describing: error))")
+            }
+        }
     }
 }

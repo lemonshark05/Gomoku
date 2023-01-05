@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+@MainActor
 class AiGame: ObservableObject {
     @Published var steps: String = "_h8"
     @Published var WinResult: Bool = false
@@ -15,15 +15,76 @@ class AiGame: ObservableObject {
     @Published var AISide:Bool = true
     @Published var blacksTurn: Bool = false
     @Published var points: Array<Elements> = Array()
+    @Published var matrix:[[Int]] = Array(repeating: Array(repeating: 0, count: 15), count: 15)
     
     init() {
-        steps = "_h8"
         points.removeAll()
-        points.append(Elements(row: 8, col: 8, status: .black))
+        steps = ""
+        matrix = Array(repeating: Array(repeating: 0, count: 15), count: 15)
+        addPiece(px: 8, py: 8, status: .black)
     }
     
     func isWin(){
-        
+        // horizontal check
+        for i in 0...14 {
+            for j in 0...9{
+                if (matrix[i][j] != 0) {
+                    if (matrix[i][j]==matrix[i][j+1] &&
+                        matrix[i][j+1]==matrix[i][j+2] &&
+                        matrix[i][j+2]==matrix[i][j+3] &&
+                        matrix[i][j+3]==matrix[i][j+4]) {
+                        print("Win!!!")
+                        WinResult = true
+                        return
+                    }
+                }
+            }
+        }
+        // vertical check
+        for i in 0...9 {
+            for j in 0...14{
+                if (matrix[i][j] != 0) {
+                    if (matrix[i][j]==matrix[i+1][j] &&
+                        matrix[i+1][j]==matrix[i+2][j] &&
+                        matrix[i+2][j]==matrix[i+3][j] &&
+                        matrix[i+3][j]==matrix[i+4][j]) {
+                        print("Win!!!")
+                        WinResult = true
+                        return
+                    }
+                }
+            }
+        }
+        // diagonal check 1
+        for i in 0...10 {
+            for j in 0...10{
+                if (matrix[i][j] != 0) {
+                    if (matrix[i][j]==matrix[i+1][j+1] &&
+                        matrix[i+1][j+1]==matrix[i+2][j+2] &&
+                        matrix[i+2][j+2]==matrix[i+3][j+3] &&
+                        matrix[i+3][j+3]==matrix[i+4][j+4]) {
+                        print("Win!!!")
+                        WinResult = true
+                        return
+                    }
+                }
+            }
+        }
+        // diagonal check 2
+        for i in 0...10 {
+            for j in 4...14{
+                if (matrix[i][j] != 0) {
+                    if (matrix[i][j]==matrix[i+1][j-1] &&
+                        matrix[i+1][j-1]==matrix[i+2][j-2] &&
+                        matrix[i+2][j-2]==matrix[i+3][j-3] &&
+                        matrix[i+3][j-3]==matrix[i+4][j-4]) {
+                        print("Win!!!")
+                        WinResult = true
+                        return
+                    }
+                }
+            }
+        }
     }
     
     func pointsToString(slist: Array<Elements>) -> String{
@@ -46,33 +107,50 @@ class AiGame: ObservableObject {
             if(AISide){
                 points.append(Elements(row: px, col: py,status: .white))
                 steps = steps + pointToString(px: px, py: py)
+                matrix[px-1][py-1] = 2
             }else{
                 if(blacksTurn){
                     points.append(Elements(row: px, col: py,status: .black))
                     steps = steps + pointToString(px: px, py: py)
+                    matrix[px-1][py-1] = 1
                     blacksTurn = false
                 }else{
                     points.append(Elements(row: px, col: py,status: .white))
                     steps = steps + pointToString(px: px, py: py)
+                    matrix[px-1][py-1] = 2
                     blacksTurn = true
                 }
             }
-//            print("PointX: \(px), PointY: \(py), String: \(pointToString(px: px, py: py))")
+            isWin()
             print(steps)
         }
+    }
+    
+    func addPiece(px:Int, py:Int, status: GameState){
+        points.append(Elements(row: px, col: py, status: .black))
+        steps = steps + pointToString(px: px, py: py)
+        matrix[px-1][py-1] = 1
+        isWin()
+    }
+    
+    func deleteMatrix(p:Elements){
+        matrix[p.row-1][p.col-1] = 0
     }
     
     func withdraw(){
         print("Withdraw Button click")
         if(AISide){
             if(points.count>2){
+                deleteMatrix(p: points[points.endIndex-1])
                 points.removeLast();
+                deleteMatrix(p: points[points.endIndex-1])
                 points.removeLast();
                 steps = pointsToString(slist: points)
                 print(steps)
             }
         }else{
             if(points.count>1){
+                deleteMatrix(p: points[points.endIndex-1])
                 points.removeLast();
                 steps = pointsToString(slist: points)
                 if(blacksTurn){
@@ -85,9 +163,10 @@ class AiGame: ObservableObject {
     }
     
     func reset() {
-        steps = "_h8"
+        steps = ""
         points.removeAll()
-        points.append(Elements(row: 8, col: 8, status: .black))
+        matrix = Array(repeating: Array(repeating: 0, count: 15), count: 15)
+        addPiece(px: 8, py: 8, status: .black)
         blacksTurn = false
         WinResult = false
         playWon = false
@@ -107,8 +186,7 @@ class AiGame: ObservableObject {
                 let (data, _) = try await session.data(from: url)
                 let json = try JSONDecoder().decode(JsonDate.self, from: data)
                 print(json)
-                self.points.append(Elements(row: Int(json.x+1), col: Int(json.y+1), status: .black))
-                self.steps = self.steps + pointToString(px: Int(json.x+1), py: Int(json.y+1))
+                addPiece(px: Int(json.x+1), py: Int(json.y+1), status: .black)
             }catch {
                 debugPrint("Error loading \(url): \(String(describing: error))")
             }

@@ -26,6 +26,14 @@ class AiGame: ObservableObject {
         
     }
     
+    func pointsToString(slist: Array<Elements>) -> String{
+        var res:String = ""
+        for p in points{
+            res = res+p.str
+        }
+        return res
+    }
+    
     func addPiece(px:Int, py:Int){
         // (x,y) must be in (1,1)~(15,15)
         if(0<px && px<16 && 0<py && py<16){
@@ -60,13 +68,13 @@ class AiGame: ObservableObject {
             if(points.count>2){
                 points.removeLast();
                 points.removeLast();
-                steps.removeLast(6)
+                steps = pointsToString(slist: points)
                 print(steps)
             }
         }else{
             if(points.count>1){
                 points.removeLast();
-                steps.removeLast(3)
+                steps = pointsToString(slist: points)
                 if(blacksTurn){
                     blacksTurn = false
                 }else{
@@ -99,8 +107,8 @@ class AiGame: ObservableObject {
                 let (data, _) = try await session.data(from: url)
                 let json = try JSONDecoder().decode(JsonDate.self, from: data)
                 print(json)
-                points.append(Elements(row: Int(json.x+1), col: Int(json.y+1), status: .black))
-                steps = steps + pointToString(px: Int(json.x+1), py: Int(json.y+1))
+                self.points.append(Elements(row: Int(json.x+1), col: Int(json.y+1), status: .black))
+                self.steps = self.steps + pointToString(px: Int(json.x+1), py: Int(json.y+1))
             }catch {
                 debugPrint("Error loading \(url): \(String(describing: error))")
             }

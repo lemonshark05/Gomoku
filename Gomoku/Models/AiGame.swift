@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@MainActor
+
 class AiGame: ObservableObject {
     @Published var steps: String = "_h8"
     @Published var WinResult: Bool = false
@@ -78,7 +78,6 @@ class AiGame: ObservableObject {
                         matrix[i+1][j-1]==matrix[i+2][j-2] &&
                         matrix[i+2][j-2]==matrix[i+3][j-3] &&
                         matrix[i+3][j-3]==matrix[i+4][j-4]) {
-                        print("Win!!!")
                         WinResult = true
                         return
                     }

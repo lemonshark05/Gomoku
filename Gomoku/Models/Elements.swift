@@ -16,8 +16,6 @@ class Elements: ObservableObject {
     
     var image: Image {
         switch status {
-        case .null:
-            return Image("")
         case .black:
             return Image("black")
         case .white:
@@ -46,10 +44,10 @@ let PDict:[Int:String] = [ 1:"a", 2:"b", 3:"c", 4:"d", 5:"e", 6:"f", 7:"g", 8:"h
 let JDict:[String:Int] = [ "a":1, "b":2, "c":3, "d":4, "e":5, "f":6, "g":7, "h":8, "i":9, "j":10, "k":11, "l":12, "m":13, "n":14, "o":15]
 
 enum GameState{
-    case null,black, white
+    case black, white
 }
 
-//{"input": "h8_a1_i9_a2", "x": 9, "y": 9}
+//{"x": 9, "y": 9}
 struct JsonDate: Decodable {
     let x: Int
     let y: Int

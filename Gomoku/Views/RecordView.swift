@@ -20,7 +20,7 @@ struct RecordView: View {
             }
             ScrollView {
                 LazyVStack(spacing: 10) {
-                    ForEach(0..<100) {
+                    ForEach(0..<20) {
                         Text("Item \($0)")
                             .font(.title)
                     }

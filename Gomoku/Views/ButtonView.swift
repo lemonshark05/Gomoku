@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ButtonView: View {
+    
     @EnvironmentObject var game: AiGame
+    
     var body: some View {
         Form{
             Button(action: game.withdraw

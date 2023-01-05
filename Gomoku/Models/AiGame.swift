@@ -8,7 +8,7 @@
 import Foundation
 
 class AiGame: ObservableObject {
-    @Published var steps: String = "_h8"
+    @Published var steps: String = ""
     @Published var WinResult: Bool = false
     @Published var playWon: Bool = false
     

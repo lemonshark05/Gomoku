@@ -12,7 +12,7 @@ struct ButtonView: View {
     @EnvironmentObject var game: AiGame
     
     var body: some View {
-        HStack(alignment: .top){
+        HStack{
             Button(action: game.withdraw
                    , label: {
                 HStack(content: {
@@ -39,6 +39,7 @@ struct ButtonView: View {
                 .background(Color.red)
                 .cornerRadius(40)
             })
+            Spacer()
         }.frame(maxHeight: UIScreen.sHeight, alignment: .topLeading)
     }
 }

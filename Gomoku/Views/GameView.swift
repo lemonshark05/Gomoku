@@ -37,9 +37,7 @@ struct GameView: View {
         }.alert(isPresented: $game.WinResult) {
             Alert(title: Text(game.playWon ? "Wow" : "Oh no!"),
                 message: Text(game.playWon ? "You won the match" :"Better luck next time"),
-                primaryButton: .destructive(Text("Reset")) {
-                game.reset()
-            }, secondaryButton: .cancel())
+                dismissButton: .default(Text("Ok")))
         }
     }
 }

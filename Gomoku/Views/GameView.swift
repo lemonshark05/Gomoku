@@ -21,8 +21,14 @@ struct GameView: View {
                     px = Int(round(location.x/UIScreen.LineSpace))
                     py = Int(round(location.y/UIScreen.LineSpace))
                     if(game.AISide){
-                        game.addPiece(px: px, py: py)
-                        game.getJson()
+                        print("blackTurn: \(game.blacksTurn)")
+                        if(game.blacksTurn){
+                            game.showAlert = true
+                        }else{
+                            game.showAlert = false
+                            game.addPiece(px: px, py: py)
+                            game.getJson()
+                        }
                     }else{
                         game.addPiece(px: px, py: py)
                     }
@@ -38,6 +44,10 @@ struct GameView: View {
                 primaryButton: .destructive(Text("Reset")) {
                 game.reset()
             }, secondaryButton: .cancel())
+        }
+        .alert(isPresented: $game.showAlert) {
+            Alert(title: Text("Notice!!!"),
+                message: Text("Give some time to white player(^_^)"))
         }
     }
 }

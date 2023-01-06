@@ -6,13 +6,14 @@
 //
 
 import Foundation
-
+@MainActor
 class AiGame: ObservableObject {
     @Published var steps: String = ""
     @Published var WinResult: Bool = false
     @Published var playWon: Bool = false
     
     @Published var AISide:Bool = true
+    @Published var showAlert:Bool = false
     @Published var blacksTurn: Bool = false
     @Published var points: Array<Elements> = Array()
     @Published var matrix:[[Int]] = Array(repeating: Array(repeating: 0, count: 15), count: 15)
@@ -107,6 +108,7 @@ class AiGame: ObservableObject {
                 points.append(Elements(row: px, col: py,status: .white))
                 steps = steps + pointToString(px: px, py: py)
                 matrix[px-1][py-1] = 2
+                blacksTurn = true
             }else{
                 if(blacksTurn){
                     points.append(Elements(row: px, col: py,status: .black))
@@ -126,7 +128,10 @@ class AiGame: ObservableObject {
     }
     
     func addPiece(px:Int, py:Int, status: GameState){
-        points.append(Elements(row: px, col: py, status: .black))
+        points.append(Elements(row: px, col: py, status: status))
+        if(status == .black){
+            blacksTurn = false
+        }
         steps = steps + pointToString(px: px, py: py)
         matrix[px-1][py-1] = 1
         isWin()

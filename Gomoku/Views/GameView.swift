@@ -28,16 +28,16 @@ struct GameView: View {
                     }else{
                         game.addPiece(px: px, py: py)
                     }
+                }.alert(isPresented: $game.WinResult) {
+                    Alert(title: Text(game.playWon ? "Wow" : "Oh no!"),
+                        message: Text(game.playWon ? "You won the match" :"Better luck next time"),
+                          dismissButton: .default(Text("Ok")))
                 }
             PieceView(ele: Elements(row: game.points[0].row, col: game.points[0].col, status: game.points[0].status))
             //Pieces layout
             ForEach(1..<game.points.count, id: \.self) { i in
                 PieceView(ele: Elements(row: game.points[i].row, col: game.points[i].col, status: game.points[i].status))
             }
-        }.alert(isPresented: $game.WinResult) {
-            Alert(title: Text(game.playWon ? "Wow" : "Oh no!"),
-                message: Text(game.playWon ? "You won the match" :"Better luck next time"),
-                dismissButton: .default(Text("Ok")))
         }
     }
 }

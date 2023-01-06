@@ -21,10 +21,7 @@ struct GameView: View {
                     px = Int(round(location.x/UIScreen.LineSpace))
                     py = Int(round(location.y/UIScreen.LineSpace))
                     if(game.AISide){
-                        if(game.blacksTurn){
-                            game.showAlert = true
-                        }else{
-                            game.showAlert = false
+                        if(!game.blacksTurn){
                             game.addPiece(px: px, py: py)
                             game.getJson()
                         }
@@ -43,10 +40,6 @@ struct GameView: View {
                 primaryButton: .destructive(Text("Reset")) {
                 game.reset()
             }, secondaryButton: .cancel())
-        }
-        .alert(isPresented: $game.showAlert) {
-            Alert(title: Text("Dear player"),
-                message: Text("Please wait for Baizi to play chess(^_^)"))
         }
     }
 }

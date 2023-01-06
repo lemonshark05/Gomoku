@@ -21,7 +21,6 @@ struct GameView: View {
                     px = Int(round(location.x/UIScreen.LineSpace))
                     py = Int(round(location.y/UIScreen.LineSpace))
                     if(game.AISide){
-                        print("blackTurn: \(game.blacksTurn)")
                         if(game.blacksTurn){
                             game.showAlert = true
                         }else{
@@ -46,8 +45,8 @@ struct GameView: View {
             }, secondaryButton: .cancel())
         }
         .alert(isPresented: $game.showAlert) {
-            Alert(title: Text("Notice!!!"),
-                message: Text("Give some time to white player(^_^)"))
+            Alert(title: Text("Dear player"),
+                message: Text("Please wait for Baizi to play chess(^_^)"))
         }
     }
 }
